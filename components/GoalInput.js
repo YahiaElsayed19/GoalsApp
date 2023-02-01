@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
     View,
+    Text,
     TextInput,
     Button,
     Image,
@@ -32,6 +33,9 @@ const GoalInput = (props) => {
                     onChangeText={goalInputHandler}
                     value={enteredGoalText}
                 />
+                <View>
+                    {props.isEmpty&&<Text style={styles.errorMsg}>Goal can NOT be empty</Text>}
+                </View>
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
                         <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
@@ -67,6 +71,10 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         width: "90%",
         padding: 8,
+    },
+    errorMsg:{
+        color:"#ffffff",
+        margin:8,
     },
     buttonContainer: {
         flexDirection: "row",

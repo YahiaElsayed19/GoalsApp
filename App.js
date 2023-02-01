@@ -4,6 +4,7 @@ import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
+  const [isEmpty, setIsEmpty] = useState(null);
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [courseGoals, setCourseGoals] = useState([]);
   const startAddGoalHandler = () => {
@@ -11,15 +12,19 @@ export default function App() {
   };
   const closeModalHandler = () => {
     setModalIsVisible(false);
+    setIsEmpty(null)
   };
 
   const addGoalHandler = (enteredGoalText) => {
-    if(enteredGoalText){
+    if (enteredGoalText) {
+      setIsEmpty(false)
       setCourseGoals((currentCourseGoals) => [
         ...currentCourseGoals,
         { text: enteredGoalText, id: Math.random().toString() },
       ]);
       closeModalHandler();
+    }else{
+      setIsEmpty(true)
     }
   };
   const deleteGoalHandler = (id) => {
@@ -39,6 +44,7 @@ export default function App() {
           onAddGoal={addGoalHandler}
           visible={modalIsVisible}
           onCancel={closeModalHandler}
+          isEmpty={isEmpty}
         />
       )}
       <View style={styles.goalsContainer}>
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   goalsContainer: {
-    marginTop:30,
+    marginTop: 30,
     flex: 5,
   },
 });
