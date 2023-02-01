@@ -17,7 +17,6 @@ export default function App() {
 
   const addGoalHandler = (enteredGoalText) => {
     if (enteredGoalText) {
-      setIsEmpty(false)
       setCourseGoals((currentCourseGoals) => [
         ...currentCourseGoals,
         { text: enteredGoalText, id: Math.random().toString() },
