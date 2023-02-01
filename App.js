@@ -14,11 +14,13 @@ export default function App() {
   };
 
   const addGoalHandler = (enteredGoalText) => {
-    setCourseGoals((currentCourseGoals) => [
-      ...currentCourseGoals,
-      { text: enteredGoalText, id: Math.random().toString() },
-    ]);
-    closeModalHandler();
+    if(enteredGoalText){
+      setCourseGoals((currentCourseGoals) => [
+        ...currentCourseGoals,
+        { text: enteredGoalText, id: Math.random().toString() },
+      ]);
+      closeModalHandler();
+    }
   };
   const deleteGoalHandler = (id) => {
     setCourseGoals((currentCourseGoals) => {
